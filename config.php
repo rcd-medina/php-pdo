@@ -3,9 +3,9 @@
 
 return [
     "db" => [
-        "dbname"   => "curso-pdo",
+        "dbname"   => "curso_pdo",
         "username" => "root",
-        "password" => "root",
+        "password" => "",
         "charset"  => "utf8",
         "host"     => "localhost"
     ]

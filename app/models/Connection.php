@@ -2,6 +2,8 @@
 
 namespace app\models;
 
+use PDO;
+
 class Connection
 {
     public static function connect()
@@ -12,11 +14,11 @@ class Connection
         // ================================================================================================
         $pdo = new PDO
         (
-            "mysql:host={$config['host']};
-            dbname = {$config['dbname']};
-            charset={$config['charset']}",
-            $config['username'],
-            $config['password']
+            "mysql:host={$config['db']['host']};
+            dbname={$config['db']['dbname']};
+            charset={$config['db']['charset']}",
+            $config['db']['username'],
+            $config['db']['password']
         );
 
         // ================================================================================================
