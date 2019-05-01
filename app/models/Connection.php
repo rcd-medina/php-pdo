@@ -8,9 +8,16 @@ class Connection
     {
         $config = require "../config.php";
         // ================================================================================================
-        // Configura a conexão com o banco de dados.
+        // Configura o objeto PDO com as informações de conexão com o banco de dados.
         // ================================================================================================
-        $pdo = new PDO("mysql:host={$config['host']};dbname = {$config['dbname']};charset={$config['charset']}", $config['username'], $config['password']);
+        $pdo = new PDO
+        (
+            "mysql:host={$config['host']};
+            dbname = {$config['dbname']};
+            charset={$config['charset']}",
+            $config['username'],
+            $config['password']
+        );
 
         // ================================================================================================
         // Configura o modo de erro a ser exibido caso ocorra algum problema com o PDO.
