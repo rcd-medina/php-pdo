@@ -14,10 +14,19 @@ abstract class Model
 
     public function all()
     {
+        // ============================================================================================
+        // Criação da sentença SQL.
+        // ============================================================================================
         $sql = "SELECT * FROM {$this->table}";
         $list = $this->connection->prepare($sql);
         $list->execute();
 
+        // ============================================================================================
+        // Retorna um array multidimensional em que cada índice aponta para outro array que contém
+        // os dados de um registro da tabela.
+        // Ou seja, a consulta retornar 3 registros, no array multidimensional haveram mais 3 arrays
+        // sendo que cada um é um registro (linha) da tabela.
+        // ============================================================================================
         return $list->fetchAll();
     }
 
