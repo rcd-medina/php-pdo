@@ -9,6 +9,19 @@
 </head>
 <body>
     <h1>Dentro de app/views/index.php</h1>
+
+    <?php
+    /*
+        foreach ($users as $user) {
+            echo $user->id . "<br>";
+            echo $user->name . "<br>";
+        }
+    */
+
+        echo "<pre>";
+        print_r($users);
+        echo "<pre>";
+    ?>
 </body>
 </html>
 
