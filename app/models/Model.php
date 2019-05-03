@@ -12,6 +12,9 @@ abstract class Model
         $this->connection = Connection::connect();
     }
 
+    // ================================================================================================
+    // Retorna todos os registros encontrados na tabela indicada.
+    // ================================================================================================
     public function all()
     {
         // ============================================================================================
@@ -41,7 +44,7 @@ abstract class Model
         // $list->bindValue(':placeholder', 2)
         // ============================================================================================
         $list = $this->connection->prepare($sql);
-        $list->bindValue(':id', 1);
+        //$list->bindValue(':id', 1);
         $list->execute();
 
         // ============================================================================================
@@ -60,6 +63,30 @@ abstract class Model
 
     public function find($field, $value)
     {
+        // ============================================================================================
+        // Na sentença SQL utiliza se um sinal de interrogação (?) para indicar onde será feita a uma
+        // substituíção por um valor real, muito parecido com :placeholder.
+        // Mas no momento em que chamamos o método bindValue() do objeto PDOStatement ($list) indica
+        // se em qual posição será a colocação do valor real, como temos apenas uma interrogação (?)
+        // usamos o número um (1) e qual o valor que será utilizado, se houvesse mais uma interrogação
+        // utilizariamos o número dois, e assim por diante.
+        //
+        // Ex.:
+        // $sql = "SELECT * FROM {$this->table} WHERE {$field} = ? AND name = ?";
+        // $list = $this->connection->prepare($sql);
+        // $list->bindValue(1, $value);
+        // $list->bindValue(2, $nome);
+        //
+        // Também poderia ser utilizado o método bindParam() do obejto PDOStatement ($list), mas aqui
+        // há uma diferença, o bindParam() obriga a utilização dos parâmetros recebidos pelo método
+        // find() acima declarado.
+        //
+        // Ex.:
+        // $sql = "SELECT * FROM {$this->table} WHERE {$field} = ? AND name = ?";
+        // $list = $this->connection->prepare($sql);
+        // $list->bindParam(1, 2);      ==> Errado
+        // $list->bindValue(2, $value); ==> Correto
+        // ============================================================================================
         $sql = "SELECT * FROM {$this->table} WHERE {$field} = ?";
         $list = $this->connection->prepare($sql);
         $list->bindValue(1, $value);
